@@ -1,0 +1,27 @@
+#
+# macro file for electronScattering
+#
+/control/verbose 0
+/run/verbose 0
+/run/numberOfThreads 2
+#
+# define here the Scattering foil
+#
+/testem/det/setMaterial Beryllium
+/testem/det/setThickness 5.005 mm
+/testem/phys/addPhysics GoudsmitSaunderson 
+
+/run/initialize
+/testem/stepMax 5 cm # From Ross, et. al. Med. Phys. 35
+/run/setCut 1 mm 
+
+/gun/particle e- 
+/gun/energy 13 MeV
+
+/analysis/setFileName electronScattering 
+/analysis/h1/set 3 120 0. 240. mm		#d(N/cost)/dS = f(r)
+/analysis/h1/set 4 120 0. 240. mm		#normalized d(N/cost)/dS = f(r)
+
+/run/printProgress 1000
+/run/beamOn        10000
+

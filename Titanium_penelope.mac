@@ -1,0 +1,27 @@
+#
+# macro file for electronScattering
+#
+/control/verbose 0
+/run/verbose 0
+
+#
+# define here the Scattering foil
+#
+/testem/det/setScatteringFoilMaterial Titanium 
+/testem/det/setThickness 0.01647 cm
+/testem/det/setExitWindowMaterial Air 
+
+/testem/phys/addPhysics penelope 
+/run/initialize
+
+/run/setCut 0.05 mm 
+
+/gun/particle e- 
+/gun/energy 13 MeV
+
+/analysis/setFileName results/Titanium_penelope #_fSeed
+/analysis/h1/set 3 120 0. 240. mm		#d(N/cost)/dS = f(r)
+/analysis/h1/set 4 120 0. 240. mm		#normalized d(N/cost)/dS = f(r)
+
+/run/printProgress 2500000
+/run/beamOn        25000000
